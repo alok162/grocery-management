@@ -3,9 +3,9 @@ import PhoneInput from "react-phone-number-input";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css";
 
-import "./Signup.css";
+import "./Form.css";
 
-class Signup extends Component {
+class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,8 +22,8 @@ class Signup extends Component {
       errorsPincode: "",
       errorsEmail: "",
       formIsValid: "",
-      tabledata: [],
-      formIsValid: "true"
+      tabledata: []
+      //   formIsValid: true
     };
   }
 
@@ -154,6 +154,7 @@ class Signup extends Component {
     );
   }
   onClick(ev) {
+    let formIsValid = true;
     this.setState({ errorsEmail: "" });
     this.setState({ errorsPincode: "" });
     this.setState({ errorsAddress_line_1: "" });
@@ -163,14 +164,14 @@ class Signup extends Component {
 
     if (typeof this.state.username !== "undefined") {
       if (!this.state.username.match(/^[a-zA-Z]+$/)) {
-        this.setState({ formIsValid: "false" });
+        formIsValid = false;
         this.setState({ formIsValid: "This field can't be empty" });
         this.setState({ errorsUsername: "Only letters is required" });
       }
     }
 
     if (!this.state.username) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsUsername: "This field can't be empty" });
     }
 
@@ -187,42 +188,42 @@ class Signup extends Component {
           this.state.email.length - lastDotPos > 2
         )
       ) {
-        this.setState({ formIsValid: "false" });
+        formIsValid = false;
         this.setState({ errorsEmail: "Email is not valid" });
       }
     }
 
     if (!this.state.email) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsEmail: "This field can't be empty" });
     }
     if (isNaN(this.state.pincode)) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsPincode: "Only number is required" });
     }
     if (this.state.pincode.length !== 6) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsPincode: "length should be 6" });
     }
     if (isNaN(this.state.phone_number)) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsPhone_number: "Only number is required" });
     }
     if (this.state.phone_number.length !== 10) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
+
       this.setState({ errorsPhone_number: "length should be 10" });
     }
     if (this.state.address_line_1.length < 3) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsAddress_line_1: "Minimum length 3 is required" });
     }
     if (this.state.address_line_2.length < 3) {
-      this.setState({ formIsValid: "false" });
+      formIsValid = false;
       this.setState({ errorsAddress_line_2: "Minimum length 3 is required" });
     }
-    console.log("data$$$$$$$$$$$$$$$", this.state.formIsValid);
 
-    if (this.state.formIsValid === "true") {
+    if (formIsValid === true) {
       let data = [
         {
           username: this.state.username,
@@ -237,4 +238,4 @@ class Signup extends Component {
     }
   }
 }
-export default Signup;
+export default Form;

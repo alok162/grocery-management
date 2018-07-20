@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import "./components/Signup";
-import Signup from "./components/Signup";
+import Form from "./components/Form";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Signup />
+        <Form />
       </div>
     );
   }
