@@ -23,7 +23,6 @@ class Form extends Component {
       errorsEmail: "",
       formIsValid: "",
       tabledata: []
-      //   formIsValid: true
     };
   }
 
